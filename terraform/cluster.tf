@@ -6,7 +6,7 @@ module "kubernetes_cluster" {
     zerotier = zerotier
   }
 
-  id_prefix             = 20
+  id                    = 20
   name                  = "athena"
   node                  = "dev"
   instance_template     = "ubuntu-focal-cloudinit"
