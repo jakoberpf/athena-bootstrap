@@ -1,4 +1,6 @@
 ---
+# ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q <user>@<host> -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"'
+
 ## Directory where etcd data stored
 etcd_data_dir: /var/lib/etcd
 
