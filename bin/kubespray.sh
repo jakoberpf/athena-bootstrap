@@ -12,13 +12,13 @@ cd $GIT_ROOT
 
 # Run kubespray deployment
 docker run --rm -it \
-  --mount type=bind,source="$GIT_ROOT"/kubespray/inventory/backup,dst=/inventory \
+  --mount type=bind,source="$GIT_ROOT"/kubespray,dst=/inventory \
   --mount type=bind,source="$GIT_ROOT"/.ssh/automation,dst=/root/.ssh/id_rsa \
-  quay.io/kubespray/kubespray:v2.17.1 bash -c "ansible-playbook -i /inventory/inventory.ini -b --private-key /root/.ssh/id_rsa cluster.yml"
+  quay.io/kubespray/kubespray:v2.18.1 bash -c "ansible-playbook -i /inventory/inventory.ini -b --private-key /root/.ssh/id_rsa cluster.yml"
 
 # Push kubernetes admin config to vault
-domain_name="api.backup.k8s.infra.erpf.de"
+domain_name="api.athena.k8s.erpf.de"
 domain_url="https:\/\/$domain_name:6443"
-sed -i "" "/^\([[:space:]]*server: \).*/s//\1$domain_url/" kubespray/inventory/backup/artifacts/admin.conf
-admin_conf="$(cat kubespray/inventory/backup/artifacts/admin.conf | base64)"
-vault kv put CICD/repo/proxmox-backup/kube-secret admin_conf=$admin_conf
+sed -i "" "/^\([[:space:]]*server: \).*/s//\1$domain_url/" kubespray/artifacts/admin.conf
+admin_conf="$(cat kubespray/artifacts/admin.conf | base64)"
+vault kv put CICD/repo/kubernetes/athena/live/kube-secret admin_conf=$admin_conf
