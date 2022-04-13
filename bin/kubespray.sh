@@ -17,8 +17,13 @@ docker run --rm -it \
   quay.io/kubespray/kubespray:v2.18.1 bash -c "ansible-playbook -i /inventory/inventory.ini -b --private-key /root/.ssh/id_rsa cluster.yml"
 
 # Push kubernetes admin config to vault
-domain_name="api.athena.k8s.erpf.de"
-domain_url="https:\/\/$domain_name:6443"
-sed -i "" "/^\([[:space:]]*server: \).*/s//\1$domain_url/" kubespray/artifacts/admin.conf
-admin_conf="$(cat kubespray/artifacts/admin.conf | base64)"
-vault kv put CICD/repo/kubernetes/athena/live/kube-secret admin_conf=$admin_conf
+config_file="kubespray/artifacts/admin.conf"
+yq -i '.clusters[0].cluster.server = "https://api.athena.k8s.erpf.de:6443"' $config_file
+yq -i '.clusters[0].name = "athena.live.local"' $config_file
+yq -i '.contexts[0].context.cluster = "athena.live.local"' $config_file
+yq -i '.contexts[0].context.user = "admin"' $config_file
+yq -i '.contexts[0].name = "admin@athena.live.local"' $config_file
+yq -i '.current-context = "admin@athena.live.local"' $config_file
+yq -i '.users[0].name = "admin"' $config_file
+admin_conf="$(cat $config_file | base64)"
+vault kv put CICD/repo/athena-bootstrap/live/kube-secret admin_conf=$admin_conf
