@@ -22,10 +22,6 @@ override.tf.json
 *.plan*
 *lock*
 
-# Enviromental variables
-.envrc
-.env
-
 # Enviromental variables and secrets
 *.env
 *.envrc
@@ -33,7 +29,8 @@ override.tf.json
 *identity.public
 *identity.secret
 
-.venv
-.DS_Store
-.ssh
+*.venv
+*.ssh
+*backend.conf
+*terragrunt.json
 *inventory.ini
