@@ -17,4 +17,6 @@ module "kubernetes_cluster" {
   network_gateway       = "192.168.0.1"
   ssh_authorized_keys   = var.authorized_keys
   zerotier_subnet       = "10.110.180.0"
+  bastion_host          = "10.147.19.60"
+  bastion_user          = "root"
 }
