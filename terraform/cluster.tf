@@ -1,9 +1,11 @@
 module "kubernetes_cluster" {
   source = "/Users/jakoberpf/Code/jakoberpf/terraform/modules/proxmox/kubernetes-cluster"
   providers = {
-    proxmox  = proxmox
-    remote   = remote.proxmox
-    zerotier = zerotier
+    cloudflare     = cloudflare
+    proxmox        = proxmox
+    remote = remote.proxmox
+    remote.gateway = remote.gateway
+    zerotier       = zerotier
   }
 
   id                    = 20
@@ -19,4 +21,7 @@ module "kubernetes_cluster" {
   zerotier_subnet       = "10.110.180.0"
   bastion_host          = "10.147.19.60"
   bastion_user          = "root"
+  cloudflare_email      = var.cloudflare_email
+  cloudflare_zone_id    = var.cloudflare_zone_id
+  cloudflare_token      = var.cloudflare_token
 }
