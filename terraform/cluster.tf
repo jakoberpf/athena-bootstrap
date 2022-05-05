@@ -3,7 +3,7 @@ module "kubernetes_cluster" {
   providers = {
     cloudflare     = cloudflare
     proxmox        = proxmox
-    remote = remote.proxmox
+    remote         = remote.proxmox
     remote.gateway = remote.gateway
     zerotier       = zerotier
   }
