@@ -1,6 +1,6 @@
 # athena-bootstrap
 
-This porject is the first stage of the athena kubernetes cluster.
+This project is the first stage of the athena kubernetes cluster.
 
 - ***athena-bootstrap***
 - athena-installer
