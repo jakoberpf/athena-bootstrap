@@ -14,15 +14,15 @@ banner:
 
 vault: banner
 	@echo "[vault] Getting configuration and secrets from Vault"
-	@./bin/vault.sh
+	@./bin/vault.sh || exit 1
 
 terraform: banner vault
 	@echo "[terraform] Creating cluster infrastructure with terraform"
-	@./bin/terraform.sh
+	@./bin/terraform.sh || exit 1
 
-ansible: banner vault
-	@echo "[ansible] Configuring cluster infrastructure with ansible"
-	@./bin/ansible.sh
+kubespray: banner vault
+	@echo "[kubespray] Configuring cluster infrastructure with kubespray"
+	@./bin/kubespray.sh || exit 1
 
-deploy: banner terraform ansible
+deploy: banner terraform kubespray
 	@echo "[deploy] Finished bootstrapping cloud"
