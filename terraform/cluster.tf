@@ -17,12 +17,12 @@ module "kubernetes_cluster" {
   master_instance_memory       = 8000
   master_instance_disk_backend = "vm-storage"
   master_instance_disk_size    = "19660M"
-  count_workers                = 3
+  count_workers                = 5
   worker_instance_template     = "ubuntu-focal-cloudinit"
   worker_instance_cpus         = 4
   worker_instance_memory       = 16000
   worker_instance_disk_backend = "vm-storage"
-  worker_instance_disk_size    = "39116M"
+  worker_instance_disk_size    = "78028M"
   network_ip_prefix            = "192.168.0.1"
   network_gateway              = "192.168.0.1"
   ssh_authorized_keys          = var.authorized_keys
