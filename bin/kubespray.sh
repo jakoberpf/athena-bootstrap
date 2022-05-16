@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
-set -o pipefail
+set -eo pipefail
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
 cd $GIT_ROOT
