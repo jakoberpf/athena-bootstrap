@@ -20,6 +20,10 @@ terraform: banner vault
 	@echo "[terraform] Creating cluster infrastructure with terraform"
 	@./bin/terraform.sh
 
+taint: banner vault
+	@echo "[taint] Taining cluster nodes"
+	@./bin/taint.sh
+
 kubespray: banner vault
 	@echo "[kubespray] Configuring cluster infrastructure with kubespray"
 	@./bin/kubespray.sh
