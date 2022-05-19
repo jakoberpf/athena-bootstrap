@@ -5,13 +5,12 @@ set -eo pipefail
 GIT_ROOT=$(git rev-parse --show-toplevel)
 cd $GIT_ROOT
 
-# https://serverfault.com/questions/532559/bash-script-count-down-5-minutes-display-on-single-line
-# secs=$((2 * 60))
-# while [ $secs -gt 0 ]; do
-#    echo -ne "$secs\033[0K\r"
-#    sleep 1
-#    : $((secs--))
-# done
+secs=$((2 * 1))
+while [ $secs -gt 0 ]; do
+   echo -ne "Waiting $secs\033[0K for VMs to be ready\r"
+   sleep 1
+   : $((secs--))
+done
 
 # Run kubespray deployment
 docker run --rm -it \
