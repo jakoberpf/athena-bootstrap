@@ -13,7 +13,7 @@ module "kubernetes_cluster" {
   node                         = "dev"
   count_masters                = 3
   master_instance_template     = "ubuntu-focal-cloudinit"
-  master_instance_cpus         = 2
+  master_instance_cpus         = 3
   master_instance_memory       = 8000
   master_instance_disk_backend = "vm-storage"
   master_instance_disk_size    = "39116M"
