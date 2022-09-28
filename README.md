@@ -6,8 +6,17 @@ This project is the first stage of the athena kubernetes cluster.
 - athena-installer
 - athena-configuration
 
-# [controller-node:vars]
-# node_labels={"node-role.kubernetes.io/master":"master"}
+## Improvements
 
-[compute-node:vars]
-node_labels={"node-role.kubernetes.io/worker":"worker"}
+Use SDN for cluster network with an OPNsense VM as router
+
+### Reminders
+
+OPNsense configuration
+
+```bash
+# LAN: 192.168.0.X/24 | StaticIP
+# WAN: 10.10.10.1/24 | StaticIP
+# Disable Firewall for WebUI access
+pfctl -d
+```
